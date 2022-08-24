@@ -18,18 +18,22 @@ viz_correlation = sns.heatmap(df_cars.corr(),
 								annot=True)								
 
 st.pyplot(viz_correlation.figure)
+plt.show()
 
 st.write("Nombre de modele de voiture par continent")
 histplot = sns.histplot(data=df_cars, x='continent', stat="count")
 st.pyplot(histplot.figure)
+plt.show()
 
 st.write("Poids / années")
 barplotPoids = sns.barplot(data=df_cars, x = 'year', y = 'weightlbs', color = 'blue')
 st.pyplot(barplotPoids.figure)
+plt.show()
 
 st.write("Evolution de la consommation:")
 barplotConso = sns.barplot(data=df_cars, x = 'year', y = 'mpg', color = 'blue',)
 st.pyplot(barplotConso.figure)
+plt.show()
 
 
 #nbre de voiture par continent
