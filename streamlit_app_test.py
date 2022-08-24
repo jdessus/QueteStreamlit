@@ -9,6 +9,18 @@ st.write("Data:")
 
 link = "https://raw.githubusercontent.com/murpi/wilddata/master/quests/cars.csv"
 df_cars= pd.read_csv(link)
+
+# Create a list of possible values and multiselect menu with them in it.
+continents = df_cars['continent'].unique()
+continents_selected = st.multiselect('Select continents', continents)
+
+# Mask to filter dataframe
+mask_continents = df_cars['continent'].isin(continents_selected)
+
+df_cars = df_cars[mask_continents]
+
+
+
 st.write(df_cars)
 
 
