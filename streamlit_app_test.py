@@ -16,11 +16,6 @@ st.write(df_cars)
 continents = df_cars['continent'].unique()
 continents_selected = st.multiselect('Select continents', continents)
 
-# Mask to filter dataframe
-mask_continents = df_cars['continent'].isin(continents_selected)
-
-df_cars = df_cars[mask_continents]
-
 
 
 st.write("Matrice de correlation:")
