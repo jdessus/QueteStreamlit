@@ -21,11 +21,11 @@ viz_correlation = sns.heatmap(df_cars.corr(),
 st.pyplot(viz_correlation.figure, clear_figure=True)
 
 
-st.write("Nombre de modele de voiture par continent")
+st.write("Répartition des modèles de voitures par continent")
 histplot = sns.histplot(data=df_cars, x='continent', stat="count")
 st.pyplot(histplot.figure, clear_figure=True)
 
-st.write("Poids / années")
+st.write("Poids / année")
 barplotPoids = sns.barplot(data=df_cars, x = 'year', y = 'weightlbs', color = 'blue')
 st.pyplot(barplotPoids.figure, clear_figure=True)
 
@@ -34,6 +34,20 @@ barplotConso = sns.barplot(data=df_cars, x = 'year', y = 'mpg', color = 'blue',)
 st.pyplot(barplotConso.figure, clear_figure=True)
 
 
+st.write("test:")
+clist = df_cars["continent"].unique().tolist()
+
+continents = st.multiselect("Select continent", clist)
+st.header("You selected: {}".format(", ".join(continents)))
+
+dfs = {continent: df[df["continent"] == continent] for continent in continents}
+
+barplot2 = plt.show()
+for continent, df in dfs.items():
+    barplotPoids2 = sns.barplot(data=df_cars, x = 'year', y = 'weightlbs', color = 'blue')
+st.pyplot(barplotPoids2.figure
+          , clear_figure=True
+          )
 
 #nbre de voiture par continent
 #poids moyen par année (+continent en filtre)
