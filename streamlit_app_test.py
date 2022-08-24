@@ -8,7 +8,7 @@ st.write("Data:")
 
 link = "https://raw.githubusercontent.com/murpi/wilddata/master/quests/cars.csv"
 df_cars= pd.read_csv(link)
-st.write(df_weather)
+st.write(df_cars)
 
 st.write("Matrice de correlation:")
 
