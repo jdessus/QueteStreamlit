@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 st.title('Quete : Streamlit : build and share data apps')
 
@@ -17,23 +18,21 @@ viz_correlation = sns.heatmap(df_cars.corr(),
 								cmap = sns.color_palette("vlag", as_cmap=True),
 								annot=True)								
 
-st.pyplot(viz_correlation.figure)
-plt.show()
+st.pyplot(viz_correlation.figure, clear_figure=True)
+
 
 st.write("Nombre de modele de voiture par continent")
 histplot = sns.histplot(data=df_cars, x='continent', stat="count")
-st.pyplot(histplot.figure)
-plt.show()
+st.pyplot(histplot.figure, clear_figure=True)
 
 st.write("Poids / années")
 barplotPoids = sns.barplot(data=df_cars, x = 'year', y = 'weightlbs', color = 'blue')
-st.pyplot(barplotPoids.figure)
-plt.show()
+st.pyplot(barplotPoids.figure, clear_figure=True)
 
 st.write("Evolution de la consommation:")
 barplotConso = sns.barplot(data=df_cars, x = 'year', y = 'mpg', color = 'blue',)
-st.pyplot(barplotConso.figure)
-plt.show()
+st.pyplot(barplotConso.figure, clear_figure=True)
+
 
 
 #nbre de voiture par continent
