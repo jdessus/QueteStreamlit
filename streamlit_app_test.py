@@ -14,8 +14,8 @@ st.write("Matrice de correlation:")
 
 viz_correlation = sns.heatmap(df_cars.corr(), 
 								center=0,
-								cmap = sns.color_palette("vlag", as_cmap=True)
-								)
+								cmap = sns.color_palette("vlag", as_cmap=True),
+								annot=True)								)
 
 st.pyplot(viz_correlation.figure)
 
