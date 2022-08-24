@@ -12,12 +12,6 @@ df_cars= pd.read_csv(link)
 st.write(df_cars)
 
 
-# Create a list of possible values and multiselect menu with them in it.
-continents = df_cars['continent'].unique()
-continents_selected = st.multiselect('Select continents', continents)
-
-
-
 st.write("Matrice de correlation:")
 
 viz_correlation = sns.heatmap(df_cars.corr(), 
