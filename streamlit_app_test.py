@@ -14,7 +14,7 @@ df_cars= pd.read_csv(link)
 
 # Create a list of possible values and multiselect menu with them in it.
 continents = df_cars['continent'].unique()
-continents_selected = st.multiselect('Choix du (des) continent(s) / pays:', continents)
+continents_selected = st.multiselect('Choix du (des) continent(s) / pays:', continents, default=["US.", "Europe.", "Japan."])
 
 # Mask to filter dataframe
 mask_continents = df_cars['continent'].isin(continents_selected)
