@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 
 st.title('Quete : Streamlit : build and share data apps')
 
+st.write("But de la quête : faire une analyse de corrélation et de distribution grâce à différents graphiques a partir d'un dataset sur les voitures.")
+
 st.write("Data:")
 
 link = "https://raw.githubusercontent.com/murpi/wilddata/master/quests/cars.csv"
@@ -12,7 +14,7 @@ df_cars= pd.read_csv(link)
 
 # Create a list of possible values and multiselect menu with them in it.
 continents = df_cars['continent'].unique()
-continents_selected = st.multiselect('Choix du (des) continent(s) :', continents)
+continents_selected = st.multiselect('Choix du (des) continent(s) / pays:', continents)
 
 # Mask to filter dataframe
 mask_continents = df_cars['continent'].isin(continents_selected)
@@ -46,7 +48,7 @@ st.write("Evolution de la consommation:")
 barplotConso = sns.barplot(data=df_cars, x = 'year', y = 'mpg', color = 'blue',)
 st.pyplot(barplotConso.figure, clear_figure=True)
 
-st.write("Evolution des chevaux:")
+st.write("Evolution des chevaux fiscaux:")
 barplotHp= sns.barplot(data=df_cars, x = 'year', y = 'hp', color = 'blue',)
 st.pyplot(barplotHp.figure, clear_figure=True)
 
