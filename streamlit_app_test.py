@@ -7,7 +7,7 @@ st.title('Quete : Streamlit : build and share data apps')
 
 st.write("But de la quête : faire une analyse de corrélation et de distribution grâce à différents graphiques a partir d'un dataset sur les voitures.")
 
-st.write("Data:")
+st.header("Data:")
 
 link = "https://raw.githubusercontent.com/murpi/wilddata/master/quests/cars.csv"
 df_cars= pd.read_csv(link)
@@ -15,7 +15,7 @@ df_cars= pd.read_csv(link)
 # Create a list of possible values and multiselect menu with them in it.
 continents = df_cars['continent'].unique()
 continents_selected = st.multiselect('Choix du (des) continent(s) / pays:', continents
-	#, default=["US.", "Europe.", "Japan."]
+	, default=continents
 	)
 
 # Mask to filter dataframe
@@ -28,7 +28,7 @@ df_cars = df_cars[mask_continents]
 st.write(df_cars)
 
 
-st.write("Matrice de correlation:")
+st.header("Matrice de correlation:")
 
 viz_correlation = sns.heatmap(df_cars.corr(), 
 								center=0,
@@ -37,26 +37,27 @@ viz_correlation = sns.heatmap(df_cars.corr(),
 
 st.pyplot(viz_correlation.figure, clear_figure=True)
 
+st.write("la matrice de corrélation permet d'évaluer la dépendence entre plusieurs variables en même temps. On voit ici, la forte dépendance entre le poids (Weight) et la puissance de la voiture (hp)")
 
-st.write("Répartition des modèles de voitures par continent")
+st.header("\nRépartition des modèles de voitures par continent")
 histplot = sns.histplot(data=df_cars, x='continent', stat="count")
 st.pyplot(histplot.figure, clear_figure=True)
 
-st.write("Poids / année")
+st.write("Les modèles de voiture des US sont les plus présent dans ce dataset")
+
+st.header("Poids / année")
 barplotPoids = sns.barplot(data=df_cars, x = 'year', y = 'weightlbs', color = 'blue')
 st.pyplot(barplotPoids.figure, clear_figure=True)
 
-st.write("Evolution de la consommation:")
-barplotConso = sns.barplot(data=df_cars, x = 'year', y = 'mpg', color = 'blue',)
-st.pyplot(barplotConso.figure, clear_figure=True)
+col1, col2 = st.columns(2)
 
-st.write("Evolution des chevaux fiscaux:")
-barplotHp= sns.barplot(data=df_cars, x = 'year', y = 'hp', color = 'blue',)
-st.pyplot(barplotHp.figure, clear_figure=True)
+with col1:
+	st.header("Evolution de la consommation:")
+	barplotConso = sns.barplot(data=df_cars, x = 'year', y = 'mpg', color = 'blue',)
+	st.pyplot(barplotConso.figure, clear_figure=True)
 
+with col2:
+	st.header("Evolution des chevaux fiscaux:")
+	barplotHp= sns.barplot(data=df_cars, x = 'year', y = 'hp', color = 'blue',)
+	st.pyplot(barplotHp.figure, clear_figure=True)
 
-#nbre de voiture par continent
-#poids moyen par année (+continent en filtre)
-#consommation (mpg miles per gallon) selon l'année (+continent)
-
-#creer repo dans github... mettre les deux fichiers + https://share.streamlit.io/
